@@ -1,12 +1,10 @@
-const path = require('path')
-
-module.export = {
-  mode: 'production', // development
+module.exports = {
+  mode: 'production',
   entry: {
     index: './src/index.js'
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: __dirname + '/dist',
     filename: '[name].js'
   },
   // 主要负责编译文件
@@ -17,7 +15,7 @@ module.export = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env']
           }
@@ -27,6 +25,6 @@ module.export = {
   },
   // 负责额外处理文件
   plugins: [
-
+    
   ]
 }
