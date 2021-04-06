@@ -1,9 +1,12 @@
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   entry: {
     index: './src/index.js'
   },
   output: {
-    path: __dirname + '/dist',
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].js'
   },
   // 主要负责编译文件
@@ -50,6 +53,10 @@ module.exports = {
   },
   // 负责额外处理文件
   plugins: [
-    
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html',
+      chunks: ['index']
+    })
   ]
 }
