@@ -5,14 +5,7 @@
 </template>
 
 <script>
-  import img from '@/img/img.jpg'
-  export default {
-    data() {
-      return {
-        img
-      }
-    }
-  }
+  export default {}
 </script>
 
 <style lang="scss">
