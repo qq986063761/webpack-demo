@@ -1,9 +1,10 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
   entry: {
-    index: './src/index.js'
+    main: './src/main.js'
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -23,40 +24,27 @@ module.exports = {
           }
         }
       },
-      // 加载 css 转换成 js 代码
-      // style-loader 生成 style 标签代码加到 head 标签中
-      // postcss-loader、autoprefixer：添加 css 兼容属性
+      // 编译 vue 代码 vue-style-loader
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
-      },
-      // 编译 scss 代码
-      // 解析 less 可以用 less、less-loader
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
-      },
-      // 资源文件解析
-      // file-loader、url-loader：解析资源文件、路径
-      {
-        test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10000
-            }
-          }
-        ]
+        test: /\.vue$/,
+        use: 'vue-loader'
       }
     ]
   },
   // 负责额外处理文件
   plugins: [
+    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './index.html',
       filename: 'index.html',
-      chunks: ['index']
+      chunks: ['main']
     })
-  ]
+  ],
+  // 配置模块解析相关
+  resolve: {
+    // 文件别名，项目内全局可通过别名快捷访问
+    alias: {
+      '@': path.resolve(__dirname, '../src')
+    }
+  }
 }
