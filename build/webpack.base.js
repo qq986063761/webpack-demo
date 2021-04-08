@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -33,6 +34,7 @@ module.exports = {
   },
   // 负责额外处理文件
   plugins: [
+    new CleanWebpackPlugin(), // 打包前清理输出目录
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',

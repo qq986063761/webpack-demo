@@ -44,7 +44,6 @@
 # 常用包
 - copy-webpack-plugin：资源复制插件、
 - progress-bar-webpack-plugin：进度插件
-- clean-webpack-plugin：打包前清理 dist 旧资源
 - webpack-merge：合并 webpack 配置
 - optimize-css-assets-webpack-plugin：压缩 css 插件，会破坏 js 压缩，所以要多引入 js 压缩插件
 - uglifyjs-webpack-plugin：压缩 js 插件
