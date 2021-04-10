@@ -25,11 +25,13 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.2.0",
     "cssnano": "^4.1.11",
+    "glob": "^7.1.6",
     "html-webpack-plugin": "^4.5.2",
     "mini-css-extract-plugin": "^1.4.1",
     "node-sass": "^4.13.1",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss-loader": "^4.2.0",
+    "raw-loader": "^4.0.2",
     "sass-loader": "^7.3.1",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
@@ -42,5 +44,9 @@
   "dependencies": {
     "vue": "^2.6.12"
   },
-  "browserslist": ["last 2 version", ">1%", "ios 7"]
+  "browserslist": [
+    "last 2 version",
+    ">1%",
+    "ios 7"
+  ]
 }

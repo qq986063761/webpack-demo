@@ -56,7 +56,7 @@ module.exports = Object.assign({}, baseConfig, {
     ...baseConfig.plugins.slice(),
     // mini-css-extract-plugin：拆分 css 文件，4.0 以前的 webpack 版本用 extract-text-webpack-plugin
     new MiniCssExtractPlugin({
-      filename: '[name][contenthash].css'
+      filename: '[name]/[name][contenthash].css' // 多页面多配置了一个 '[name]/'
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
