@@ -10,7 +10,7 @@ module.exports = {
   entry,
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].js'
+    filename: '[name].js' // 如果多页面要在前面多配置一个 [name]/ 让打包后的文件分到指定文件夹
   },
   // 主要负责编译文件
   module: {
