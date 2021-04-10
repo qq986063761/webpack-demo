@@ -9,7 +9,7 @@ const { entry, htmlWebpackPlugins } = getMPA()
 module.exports = {
   entry,
   output: {
-    path: path.resolve(__dirname, '../dist/[name]'), // 多页面多配置了一个 '/[name]'
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].js'
   },
   // 主要负责编译文件

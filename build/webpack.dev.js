@@ -6,7 +6,7 @@ module.exports = Object.assign({}, baseConfig, {
   mode: 'development',
   output: {
     ...baseConfig.output,
-    filename: '[name][hash].js'
+    filename: '[name]/[name][hash].js' // 多页面多配置了一个 '[name]/'
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),

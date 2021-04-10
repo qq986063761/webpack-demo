@@ -6,7 +6,7 @@ module.exports = Object.assign({}, baseConfig, {
   mode: 'production',
   output: {
     ...baseConfig.output,
-    filename: '[name][chunkhash].js'
+    filename: '[name]/[name][chunkhash].js' // 多页面多配置了一个 '[name]/'
   },
   module: {
     rules: [
