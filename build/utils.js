@@ -9,14 +9,14 @@ module.exports = {
     const entry = {}
     const htmlWebpackPlugins = []
     // 获取 pages 下的所有带 index.js 文件的路径
-    const files = glob.sync(path.join(__dirname, '../pages/*/index.js'))
+    const files = glob.sync(path.join(__dirname, '../src/pages/*/index.js'))
     files.forEach(str => {
       const key = str.split('pages/')[1].split('/index.js')[0]
-      entry[key] = `./pages/${key}/index.js`
+      entry[key] = `./src/pages/${key}/index.js`
       htmlWebpackPlugins.push(new HtmlWebpackPlugin({
-        template: `./pages/${key}/index.html`,
+        template: `./src/pages/${key}/index.html`,
         filename: `${key}/index.html`,
-        chunks: [key]
+        chunks: ['vendors', key]
       }))
     })
   

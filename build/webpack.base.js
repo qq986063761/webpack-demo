@@ -43,7 +43,20 @@ module.exports = {
   resolve: {
     // 文件别名，项目内全局可通过别名快捷访问
     alias: {
-      '@': path.resolve(__dirname, '../pages/page1')
+      '@': path.resolve(__dirname, '../src')
+    }
+  },
+  optimization: {
+    splitChunks: {
+      minSize: 0,
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          // test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          minChunks: 2
+        }
+      }
     }
   }
 }

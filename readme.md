@@ -41,15 +41,10 @@
 - bundle server：提供文件服务，让浏览器能访问
 - hmr runtime：会注入到浏览器端的 bundle.js 中，和本地服务建立连接，更新文件变化
 
-# 常用包
-- copy-webpack-plugin：资源复制插件、
-- progress-bar-webpack-plugin：进度插件
-- webpack-merge：合并 webpack 配置
-- optimize-css-assets-webpack-plugin：压缩 css 插件，会破坏 js 压缩，所以要多引入 js 压缩插件
-- uglifyjs-webpack-plugin：压缩 js 插件
-- webpack-bundle-analyzer：分析打包后的文件树
 
-# 问题
+
+
+
 
 # webpackJsonp is not defined
 - 大多是 html 中 js 资源加载先后顺序混乱
