@@ -41,8 +41,8 @@
 - bundle server：提供文件服务，让浏览器能访问
 - hmr runtime：会注入到浏览器端的 bundle.js 中，和本地服务建立连接，更新文件变化
 
-
-
+# tree shaking（摇树优化）
+- 
 
 
 

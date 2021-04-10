@@ -47,14 +47,22 @@ module.exports = {
     }
   },
   optimization: {
+    // 分割公用代码块
     splitChunks: {
-      minSize: 0,
+      minSize: 0, // 代码大小超出范围则提取打包
       cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          chunks: 'all',
+          test: /[\\/]node_modules[\\/]/,
+          minChunks: 2,
+          priority: 1 // 优先级高的会优先被提取出来
+        },
         commons: {
           name: 'commons',
-          // test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
-          minChunks: 2
+          minChunks: 2,
+          priority: -10
         }
       }
     }

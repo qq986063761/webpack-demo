@@ -16,7 +16,7 @@ module.exports = {
       htmlWebpackPlugins.push(new HtmlWebpackPlugin({
         template: `./src/pages/${key}/index.html`,
         filename: `${key}/index.html`,
-        chunks: ['vendors', key]
+        chunks: ['vendors', 'commons', key]
       }))
     })
   
