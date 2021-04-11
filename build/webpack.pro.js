@@ -1,16 +1,15 @@
 const baseConfig = require('./webpack.base.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const { merge } = require('webpack-merge')
 
-module.exports = Object.assign({}, baseConfig, {
+module.exports = merge(baseConfig, {
   mode: 'production',
   output: {
-    ...baseConfig.output,
     filename: '[name]/[name][chunkhash].js' // 多页面多配置了一个 '[name]/'
   },
   module: {
     rules: [
-      ...baseConfig.module.rules.slice(),
       // 加载 css 转换成 js 代码
       // style-loader 生成 style 标签代码加到 head 标签中
       // postcss-loader、autoprefixer：添加 css 兼容属性
@@ -53,7 +52,6 @@ module.exports = Object.assign({}, baseConfig, {
     ]
   },
   plugins: [
-    ...baseConfig.plugins.slice(),
     // mini-css-extract-plugin：拆分 css 文件，4.0 以前的 webpack 版本用 extract-text-webpack-plugin
     new MiniCssExtractPlugin({
       filename: '[name]/[name][contenthash].css' // 多页面多配置了一个 '[name]/'

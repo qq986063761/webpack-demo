@@ -1,11 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
+const { merge } = require('webpack-merge')
 const baseConfig = require('./webpack.base.js')
 
-module.exports = Object.assign({}, baseConfig, {
+module.exports = merge(baseConfig, {
   mode: 'development',
   output: {
-    ...baseConfig.output,
     filename: '[name]/[name][hash].js' // 多页面多配置了一个 '[name]/'
   },
   devServer: {
@@ -16,7 +16,6 @@ module.exports = Object.assign({}, baseConfig, {
   },
   module: {
     rules: [
-      ...baseConfig.module.rules.slice(),
       // 加载 css 转换成 js 代码
       // style-loader 生成 style 标签代码加到 head 标签中
       // postcss-loader、autoprefixer：添加 css 兼容属性
@@ -39,7 +38,6 @@ module.exports = Object.assign({}, baseConfig, {
     ]
   },
   plugins: [
-    ...baseConfig.plugins.slice(),
     new webpack.HotModuleReplacementPlugin()
   ]
 })
