@@ -6,7 +6,6 @@
 
 <script>
   import { getData } from '@/common/utils.js'
-
   export default {
     mounted() {
       getData()

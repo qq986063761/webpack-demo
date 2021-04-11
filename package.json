@@ -28,6 +28,7 @@
     "cssnano": "^4.1.11",
     "eslint": "^7.24.0",
     "eslint-loader": "^4.0.2",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.6",
     "html-webpack-plugin": "^4.5.2",
     "mini-css-extract-plugin": "^1.4.1",

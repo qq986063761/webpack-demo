@@ -2,6 +2,7 @@ const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { getMPA } = require('./utils.js')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 // 多页面配置
 const { entry, htmlWebpackPlugins } = getMPA()
@@ -39,6 +40,7 @@ module.exports = {
   // 负责额外处理文件
   plugins: [
     new CleanWebpackPlugin(), // 打包前清理输出目录
+    new FriendlyErrorsWebpackPlugin(), // 能在控制台输出友好的日志
     new VueLoaderPlugin(),
     ...htmlWebpackPlugins
   ],
@@ -69,5 +71,7 @@ module.exports = {
         }
       }
     }
-  }
+  },
+  // 控制台输出内容
+  stats: 'errors-only'
 }

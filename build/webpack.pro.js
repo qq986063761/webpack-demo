@@ -61,6 +61,18 @@ module.exports = Object.assign({}, baseConfig, {
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano')
-    })
+    }),
+    // 可以自己最后监听一下错误用于上报
+    function() {
+      this.hooks.done.tap('done', stats => {
+        //  && process.argv.indexOf('--watch') === -1
+        if (stats.compilation.errors && stats.compilation.errors.length) {
+          console.log('build error')
+          process.exit(1)
+        } else {
+          console.log('build success')
+        }
+      })
+    }
   ]
 })
