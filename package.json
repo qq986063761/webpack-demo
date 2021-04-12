@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.dev.js",
-    "build": "webpack --config ./build/webpack.pro.js"
+    "build": "webpack --config ./build/webpack.pro.js",
+    "build:speed": "webpack --config ./build/webpack.pro.speed.js",
+    "build:analysis": "webpack --config ./build/webpack.pro.analysis.js"
   },
   "repository": {
     "type": "git",
@@ -37,11 +39,13 @@
     "postcss-loader": "^4.2.0",
     "raw-loader": "^4.0.2",
     "sass-loader": "^7.3.1",
+    "speed-measure-webpack-plugin": "^1.5.0",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12",
     "webpack": "^4.46.0",
+    "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
