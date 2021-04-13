@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.dev.js",
     "build": "webpack --config ./build/webpack.pro.js",
+    "build:dll": "webpack --config ./build/webpack.dll.js",
     "build:speed": "webpack --config ./build/webpack.pro.speed.js",
     "build:analysis": "webpack --config ./build/webpack.pro.analysis.js"
   },

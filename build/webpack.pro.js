@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const baseConfig = require('./webpack.base.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -60,6 +61,10 @@ module.exports = merge(baseConfig, {
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano')
     }),
+    // 引入 dllplugin 插件分出的包
+    // new webpack.DllReferencePlugin({
+    //   manifest: require('./library/library.json')
+    // }),
     // 可以自己最后监听一下错误用于上报
     function() {
       this.hooks.done.tap('done', stats => {
