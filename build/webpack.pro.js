@@ -1,9 +1,16 @@
 // const webpack = require('webpack')
+const glob = require('glob')
+const path = require('path')
 const { merge } = require('webpack-merge')
 const baseConfig = require('./webpack.base.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const PurgeCSSPlugin = require('purgecss-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
+
+const PATHS = {
+  src: path.join(__dirname, '../src')
+}
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -57,6 +64,10 @@ module.exports = merge(baseConfig, {
     // mini-css-extract-plugin：拆分 css 文件，4.0 以前的 webpack 版本用 extract-text-webpack-plugin
     new MiniCssExtractPlugin({
       filename: '[name]/[name][contenthash].css' // 多页面多配置了一个 '[name]/'
+    }),
+    // 只能配合 MiniCssExtractPlugin 插件一起删除未使用的 css 代码
+    new PurgeCSSPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`,  { nodir: true }),
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
