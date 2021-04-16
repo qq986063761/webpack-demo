@@ -52,8 +52,12 @@ module.exports = merge(baseConfig, {
           {
             loader: 'url-loader',
             options: {
-              limit: 10000,
-              name: '[name][hash].[ext]'
+              limit: 8192,
+              name: pathStr => {
+                let path = pathStr.split('pages/')[1].split('/')
+                path.pop()
+                return '/' + path.join('/') + '/[name][hash].[ext]'
+              }
             }
           }
         ]

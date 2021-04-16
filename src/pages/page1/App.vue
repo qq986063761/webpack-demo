@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img :src="require('@/pages/page1/img/img.jpg').default">
+    <img :src="require('@/pages/page1/img/2.jpg').default">
   </div>
 </template>
 
