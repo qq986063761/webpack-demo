@@ -1,9 +1,10 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { getMPA } = require('./utils.js')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const { getMPA } = require('./utils.js')
 
+const srcPath = path.resolve(__dirname, '../src')
 // 多页面配置
 const { entry, htmlWebpackPlugins } = getMPA()
 
@@ -19,12 +20,14 @@ module.exports = {
       // babel 用于编译 es6 成 es5
       {
         test: /\.jsx?$/,
+        include: srcPath,
         exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
+              presets: ['@babel/preset-env'],
+              cacheDirectory: true // 开启缓存
             }
           },
           'eslint-loader'
@@ -46,10 +49,18 @@ module.exports = {
   ],
   // 配置模块解析相关
   resolve: {
+    extensions: ['.vue', '.js', '.json'],
     // 文件别名，项目内全局可通过别名快捷访问
     alias: {
-      '@': path.resolve(__dirname, '../src')
-    }
+      '@': srcPath
+    },
+    // 解析模块时，应该搜索的目录，可减少搜索范围提高构建速度
+    modules: [
+      srcPath,
+      'node_modules'
+    ],
+    // 使用模块项目中 package.json 哪个属性作为 target 来引入，main module unpkg 等等
+    mainFields: ['main']
   },
   optimization: {
     // 分割公用代码块

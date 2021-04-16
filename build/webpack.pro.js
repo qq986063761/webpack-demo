@@ -1,8 +1,9 @@
-const webpack = require('webpack')
+// const webpack = require('webpack')
+const { merge } = require('webpack-merge')
 const baseConfig = require('./webpack.base.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const { merge } = require('webpack-merge')
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -77,5 +78,13 @@ module.exports = merge(baseConfig, {
         }
       })
     }
-  ]
+  ],
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        cache: true // 压缩缓存
+      })
+    ]
+  }
 })
