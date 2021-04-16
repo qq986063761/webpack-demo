@@ -27,7 +27,7 @@ module.exports = merge(baseConfig, {
       // 解析 less 可以用 less、less-loader
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['vue-style-loader', 'css-loader', 'sass-loader']
       },
       // 资源文件解析
       // file-loader、url-loader：解析资源文件、路径
