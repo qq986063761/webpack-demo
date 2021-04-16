@@ -24,9 +24,9 @@ module.exports = merge(baseConfig, {
       // postcss-loader、autoprefixer：添加 css 兼容属性
       {
         test: /\.css$/,
-        // MiniCssExtractPlugin.loader 和 'style-loader' 冲突不能共用
+        // MiniCssExtractPlugin.loader、'style-loader'、'vue-style-loader' 冲突不能共用
         use: [
-          MiniCssExtractPlugin.loader, 
+          MiniCssExtractPlugin.loader,
           'css-loader',
           // 要配合 postcss.config.js 和 package.json 中 browserslist 配置才生效
           'postcss-loader'
@@ -38,14 +38,14 @@ module.exports = merge(baseConfig, {
         test: /\.scss$/,
         // 'style-loader'
         use: [
-          MiniCssExtractPlugin.loader, 
-          'css-loader', 
+          'vue-style-loader',
+          'css-loader',
           'sass-loader',
           'postcss-loader'
         ]
       },
       // 资源文件解析
-      // file-loader、url-loader：解析资源文件、路径
+      // file-loader url-loader：解析资源文件、路径
       {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
         use: [

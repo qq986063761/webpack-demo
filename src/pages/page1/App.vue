@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img :src="require('@/pages/page1/img/2.jpg').default">
+    <img class="img" :src="require('@/pages/page1/img/img.jpg').default">
   </div>
 </template>
 
@@ -13,10 +13,10 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   #app {
     box-sizing: border-box;
-    img {
+    .img {
       width: 300px;
     }
   }
