@@ -50,7 +50,7 @@ module.exports = {
   // 配置模块解析相关
   resolve: {
     extensions: ['.vue', '.js', '.json'],
-    // 文件别名，项目内全局可通过别名快捷访问
+    // 文件别名，项目内全局可通过别名快捷访问
     alias: {
       '@': srcPath
     },
