@@ -48,7 +48,20 @@ module.exports = merge(baseConfig, {
       // file-loader url-loader：解析资源文件、路径
       {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
-        // 特殊图片资源不内联到 js 代码中优化 js 资源大小
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: pathStr => {
+                let path = pathStr.split('pages/')[1].split('/')
+                path.pop()
+                return '/' + path.join('/') + '/[name][hash].[ext]'
+              }
+            }
+          }
+        ],
+        // 特殊图片资源不内联到 js 代码中优化 js 资源大小，去掉上面 url-loader 配置换成下面的
         // oneOf: [
         //   {
         //     test: /node_modules(\/|\\)@zoom(\/|\\)zoom-ui(\/|\\).*(\/|\\)country-select(\/|\\).*\.(png|jpe?g|gif|webp)(\?.*)?$/i,
@@ -66,21 +79,25 @@ module.exports = merge(baseConfig, {
         //         }
         //       }
         //     ]
+        //   },
+        //   {
+        //     test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+        //     use: [
+        //       {
+        //         loader: 'url-loader',
+        //         options: {
+        //           limit: 4096,
+        //           fallback: {
+        //             loader: 'file-loader',
+        //             options: {
+        //               name: 'img/[name].[hash:8].[ext]'
+        //             }
+        //           }
+        //         }
+        //       }
+        //     ]
         //   }
-        // ],
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              name: pathStr => {
-                let path = pathStr.split('pages/')[1].split('/')
-                path.pop()
-                return '/' + path.join('/') + '/[name][hash].[ext]'
-              }
-            }
-          }
-        ]
+        // ]
       }
     ]
   },
